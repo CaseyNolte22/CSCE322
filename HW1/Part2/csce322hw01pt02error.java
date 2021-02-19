@@ -6,8 +6,8 @@ class csce322hw01pt02error extends BaseErrorListener{
 	public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line,
 				int position, String msg, RecognitionException e) {
 	System.err.println( msg );
-
-	// replace with code to process syntax errors
-	System.out.println( "ERROR" );
+	System.out.println("Something unexpected happened on Line " + line + ".");
+	System.exit(0);
+	return;
     }	
 }

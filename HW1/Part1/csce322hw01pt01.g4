@@ -6,7 +6,7 @@ SECTIONBEGINNING : '\\begin{section}' {System.out.println("Open Section: " + get
 SECTIONENDING : '\\end{section}' {System.out.println("Close Section: " + getText());};
 SECTIONTITLE  : ('\\title{Moves}' | '\\title{Maze}') {System.out.println("Section Title: " + getText());};
 ASSIGNVALUE : '::' {System.out.println("Designation: " + getText() );};
-MOVESYMBOL : ('c' | 'cc' | '180') ;
+MOVESYMBOL : ('c' | 'cc' | '180') {System.out.println("Move: " + getText() );};
 fragment NUMERICALSYMBOL : [0-9];
 MAZESYMBOL : ('-' | 'g' | 'x' | NUMERICALSYMBOL+) {System.out.println("Location: " + getText());}; 
 ROWENDING : '\\\\' {System.out.println("Close Row: " + getText());};

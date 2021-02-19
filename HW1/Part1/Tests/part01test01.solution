@@ -1,0 +1,75 @@
+Open Section: \begin{section}
+Section Title: \title{Maze}
+Designation: ::
+Open Maze: \begin{maze}
+Location: x
+Location: x
+Location: x
+Location: x
+Location: x
+Location: x
+Location: x
+Location: x
+Close Row: \\
+Location: x
+Location: -
+Location: 5
+Location: -
+Location: 2
+Location: -
+Location: x
+Location: x
+Close Row: \\
+Location: x
+Location: x
+Location: -
+Location: -
+Location: g
+Location: -
+Location: -
+Location: x
+Close Row: \\
+Location: x
+Location: 6
+Location: -
+Location: -
+Location: g
+Location: x
+Location: -
+Location: x
+Close Row: \\
+Location: x
+Location: 3
+Location: -
+Location: 4
+Location: -
+Location: -
+Location: 1
+Location: x
+Close Row: \\
+Location: x
+Location: x
+Location: x
+Location: x
+Location: x
+Location: x
+Location: x
+Location: x
+Close Maze: \end{maze}
+Close Section: \end{section}
+Open Section: \begin{section}
+Section Title: \title{Moves}
+Designation: ::
+Open Moves: \begin{moves}
+Move: c
+Move: cc
+Move: cc
+Move: cc
+Move: cc
+Move: 180
+Move: 180
+Move: 180
+Move: 180
+Close Moves: \end{moves}
+Close Section: \end{section}
+Close of File
