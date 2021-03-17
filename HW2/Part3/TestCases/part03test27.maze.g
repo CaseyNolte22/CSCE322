@@ -1,0 +1,10 @@
+xxxxxxxxxx
+xx1-----xx
+x-xx-----x
+x---3-x--x
+x-x-x---xx
+xxx-4----x
+xxx2-----x
+x-----x--x
+x--g--xx-x
+xxxxxxxxxx
