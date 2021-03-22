@@ -1,60 +1,124 @@
 module.exports = {
-    readMazeFile:readMazeFile,
-    readMovesFile:readMovesFile,
-    printMaze:printMaze,
-    printMoves:printMoves
-}
+  readMazeFile: readMazeFile,
+  readMovesFile: readMovesFile,
+  printMaze: printMaze,
+  printMoves: printMoves,
+  rotateClockwise: rotateClockwise,
+  rotateCounterClockwise: rotateCounterClockwise,
+  rotate180: rotate180,
+  dropPlayer: dropPlayer,
+};
 
-function readMazeFile( file )
-{
-    var text;
-    var lines = [];
-    var rows = [];
-    var filesystem = require( 'fs' );
+function readMazeFile(file) {
+  var text;
+  var lines = [];
+  var rows = [];
+  var filesystem = require("fs");
 
-    text = filesystem.readFileSync( file );
-    rows = text.toString().split( "\n" );
-    rows.pop();
-    
-    var maze = [];
-    for( var r = 0; r < rows.length; r++ ){
-	maze[r] = [];
-	for( var c = 0; c < rows[r].length; c++ ){
-	    maze[r][c] = rows[r].charAt( c );
-	}
+  text = filesystem.readFileSync(file);
+  rows = text.toString().split("\n");
+  rows.pop();
+
+  var maze = [];
+  for (var r = 0; r < rows.length; r++) {
+    maze[r] = [];
+    for (var c = 0; c < rows[r].length; c++) {
+      maze[r][c] = rows[r].charAt(c);
     }
-    
-    return maze;
+  }
+
+  return maze;
 }
 
-function readMovesFile( file )
-{
-    var text;
-    var line = [];
-    var filesystem = require( 'fs' );
-    var row = [];
-    var moves = [];
+function readMovesFile(file) {
+  var text;
+  var line = [];
+  var filesystem = require("fs");
+  var row = [];
+  var moves = [];
 
-    text = filesystem.readFileSync( file );
-    moves = text.toString().split( "\n" );
-    
-    return moves; 
+  text = filesystem.readFileSync(file);
+  moves = text.toString().split("\n");
+
+  return moves;
 }
 
-function printMaze(maze){
-    for( var r = 0; r < maze.length; r++ ){
-	var row = "";
-	for( var c = 0; c < maze[r].length; c++ ){
-	    row = row + maze[r][c];
-	}
-	console.log( row );
+function printMaze(maze) {
+  for (var r = 0; r < maze.length; r++) {
+    var row = "";
+    for (var c = 0; c < maze[r].length; c++) {
+      row = row + maze[r][c];
     }
+    console.log(row);
+  }
 }
 
-function printMoves(moves){
-    var moveString = "";
-    for( var m = 0; m < moves.length; m++ ){
-	moveString = moveString + moves[m];
+function printMoves(moves) {
+  var moveString = "";
+  for (var m = 0; m < moves.length; m++) {
+    moveString = moveString + moves[m];
+  }
+  console.log(moveString);
+}
+
+function rotateClockwise(maze) {
+  var rotated = [];
+  for (i = 0; i < maze[0].length; i++) {
+    var tempRow = [];
+    for (j = 0; j < maze.length; j++) {
+      tempRow.unshift(maze[j][i]);
     }
-    console.log( moveString );
+    rotated[i] = tempRow;
+  }
+  return rotated;
+}
+
+function rotateCounterClockwise(maze) {
+  var rotated90 = rotateClockwise(maze);
+  var rotated180 = rotateClockwise(rotated90);
+  var rotated270 = rotateClockwise(rotated180);
+
+  return rotated270;
+}
+
+function rotate180(maze) {
+  var rotated90 = rotateClockwise(maze);
+  var rotated180 = rotateClockwise(rotated90);
+
+  return rotated180;
+}
+
+function dropPlayer(maze, player) {
+  var playerlocation_row = 0;
+  var playerlocation_column = 0;
+
+  for (row = 0; row < maze.length; row++) {
+    for (column = 0; column < maze[0].length; column++) {
+      if (maze[row][column] == player) {
+        playerlocation_row = row;
+        playerlocation_column = column;
+        break;
+      }
+    }
+  }
+
+  while (
+    maze[playerlocation_row + 1][playerlocation_column] != "x" &&
+    maze[playerlocation_row + 1][playerlocation_column] != 1 &&
+    maze[playerlocation_row + 1][playerlocation_column] != 2 &&
+    maze[playerlocation_row + 1][playerlocation_column] != 3 &&
+    maze[playerlocation_row + 1][playerlocation_column] != 4 &&
+    maze[playerlocation_row + 1][playerlocation_column] != 5
+  ) {
+    if (maze[playerlocation_row + 1][playerlocation_column] == "g") {
+      maze[playerlocation_row][playerlocation_column] = "-";
+      maze[playerlocation_row + 1][playerlocation_column] = player;
+      return 1;
+    }
+
+    rotated[playerlocation_row][playerlocation_column] = "-";
+    rotated[playerlocation_row + 1][playerlocation_column] = player;
+    playerlocation_row++;
+  }
+  return 0;
 }

@@ -61,11 +61,13 @@ function printMoves(moves) {
 }
 
 function rotateClockwise(maze) {
-  var rotated = maze;
-  for (i = 0; i < maze.length; i++) {
+  var rotated = [];
+  for (i = 0; i < maze[0].length; i++) {
+    var tempRow = [];
     for (j = 0; j < maze.length; j++) {
-      rotated[i][j] = maze[j][i];
+      tempRow.unshift(maze[j][i]);
     }
+    rotated[i] = tempRow;
   }
   return rotated;
 }
@@ -84,15 +86,3 @@ function rotate180(maze) {
 
   return rotated180;
 }
-
-// var rotated = [];
-//   var tempRow = [];
-//   for (i = 0; i < maze[1].length; i++) {
-//     tempRow = [];
-//     for (j = 0; j < maze.length; j++) {
-//       tempRow.unshift(maze[j][i]);
-//     }
-//     console.log(tempRow);
-//     rotated[i] = tempRow;
-//   }
-//   return rotated;
